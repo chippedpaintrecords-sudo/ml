@@ -1,0 +1,13 @@
+/* Place your CSS styles in this file */
+
+h1 {
+    text-align: center;
+    font-family: "Times New Roman", serif;
+    font-weight: normal;
+    color: white;
+
+}
+body {
+    background-image: url('./redstars.gif');
+    background-repeat: repeat;
+}

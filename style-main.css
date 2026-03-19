@@ -1,0 +1,368 @@
+/* ============================================================
+   Monica Lewis — Poetry Website
+   style-main.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+/* ── Variables ── */
+:root {
+  --bg:           #0e0c0a;
+  --text:         #ddd4c5;
+  --text-muted:   #5e574f;
+  --accent:       #a83510;
+  --rule:         #1e1c19;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'EB Garamond', Georgia, serif;
+  --max-w:        660px;
+  --pad:          clamp(1.25rem, 5vw, 3.5rem);
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Base ── */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.8;
+  padding: var(--pad) var(--pad) calc(var(--pad) * 2.5);
+  min-height: 100vh;
+  animation: pageIn 0.5s ease both;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+em { font-style: italic; }
+
+
+/* ================================================================
+   INDEX PAGE
+   ================================================================ */
+
+.i-header {
+  max-width: 860px;
+  margin: 0 auto clamp(3rem, 6vw, 5rem);
+}
+
+.i-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(4.25rem, 12vw, 9.5rem);
+  letter-spacing: -0.025em;
+  line-height: 0.92;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+.i-rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 1.75rem 0 1.5rem;
+}
+
+.i-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.i-photo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.78;
+  filter: grayscale(30%) sepia(10%);
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+.i-photo:hover { opacity: 0.95; }
+
+.i-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.i-links a,
+.i-links button {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.i-links a:hover,
+.i-links button:hover {
+  color: var(--text);
+  border-bottom-color: var(--text-muted);
+}
+
+/* ── Poem list ── */
+.i-list {
+  max-width: 700px;
+  margin: 0 auto;
+  border-top: 1px solid var(--rule);
+}
+
+.i-poem {
+  display: block;
+  padding: 0.9rem 0 0.9rem 0.85rem;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text);
+  position: relative;
+  transition: padding-left 0.22s ease, color 0.2s ease;
+}
+
+.i-poem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.22s ease;
+}
+
+.i-poem:hover {
+  padding-left: 1.5rem;
+}
+
+.i-poem:hover::before {
+  height: 52%;
+}
+
+/* ── Index footer ── */
+.i-footer {
+  max-width: 700px;
+  margin: 4rem auto 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+
+/* ================================================================
+   POEM PAGES
+   ================================================================ */
+
+.p-nav {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.p-nav a {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.p-nav a::before { content: '← '; }
+
+.p-nav a:hover {
+  color: var(--accent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.p-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  line-height: 1.1;
+  max-width: var(--max-w);
+  margin-bottom: 1.75rem;
+  color: var(--text);
+}
+
+.p-bar {
+  width: 2rem;
+  height: 1px;
+  background: var(--accent);
+  margin-bottom: 2.75rem;
+  opacity: 0.65;
+}
+
+.p-body {
+  max-width: var(--max-w);
+  font-size: 1.1rem;
+  line-height: 1.95;
+  color: var(--text);
+}
+
+.p-body p {
+  margin-bottom: 1.5em;
+}
+
+/* ── Poem footer ── */
+.p-foot {
+  margin-top: 5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--max-w);
+}
+
+.p-foot a {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.p-foot a::before { content: '← '; }
+
+.p-foot a:hover {
+  color: var(--accent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.p-foot span {
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+
+/* ================================================================
+   ABOUT PAGE
+   ================================================================ */
+
+.a-nav {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.a-nav a {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.a-nav a::before { content: '← '; }
+
+.a-nav a:hover {
+  color: var(--accent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.a-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(3.25rem, 8vw, 6.5rem);
+  line-height: 0.92;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.a-photo {
+  display: block;
+  width: 160px;
+  height: auto;
+  margin-bottom: 2.5rem;
+  filter: grayscale(12%) sepia(8%);
+  opacity: 0.9;
+}
+
+.a-rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  max-width: var(--max-w);
+  margin-bottom: 2.5rem;
+}
+
+.a-bio {
+  max-width: var(--max-w);
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--text);
+}
+
+.a-bio p { margin-bottom: 1.25em; }
+
+.a-foot {
+  margin-top: 4.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  max-width: var(--max-w);
+}
+
+.a-foot a {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.a-foot a::before { content: '← '; }
+
+.a-foot a:hover {
+  color: var(--accent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}

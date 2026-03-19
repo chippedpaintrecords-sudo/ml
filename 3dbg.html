@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Poems by Monica Lewis</title>
+
+    <style>
+        h1 {text-align: center;}
+        p {text-align: center;}
+        div {text-align: center;}
+        body {
+            margin: 0;
+            background-color: black;
+            position: relative;
+        }
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        #content {
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+        a {
+            color: red;
+            text-decoration: none;
+            font-family: 'Courier New', Courier, monospace;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .strobe-effect {
+            animation: strobe 1s linear infinite;
+        }
+        @keyframes strobe {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .explode {
+            position: relative;
+            animation: explode 0.5s forwards;
+        }
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/center.css">
+
+    <script>
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        });
+    </script>
+</head>
+<body>
+    <iframe id="starfield" srcdoc="
+        <!DOCTYPE html>
+        <html lang='en'>
+        <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <title>Starfield</title>
+            <script src='https://cdn.jsdelivr.net/npm/three@0.124.0/build/three.min.js'></script>
+            <style>
+                body { margin: 0; overflow: hidden; background-color: black; }
+            </style>
+        </head>
+        <body>
+            <script>
+                let scene, camera, renderer, stars, starGeo;
+
+                function init() {
+                    scene = new THREE.Scene();
+                    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                    camera.position.z = 50;
+
+                    renderer = new THREE.WebGLRenderer();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    document.body.appendChild(renderer.domElement);
+
+                    // Starfield
+                    starGeo = new THREE.BufferGeometry();
+                    let starVertices = [];
+                    for (let i = 0; i < 6000; i++) {
+                        let x = Math.random() * 600 - 300;
+                        let y = Math.random() * 600 - 300;
+                        let z = Math.random() * 600 - 300;
+                        starVertices.push(x, y, z);
+                    }
+                    starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+
+                    let sprite = new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png');
+                    let starMaterial = new THREE.PointsMaterial({
+                        color: 0xff0000,
+                        size: 0.7,
+                        map: sprite
+                    });
+
+                    stars = new THREE.Points(starGeo, starMaterial);
+                    scene.add(stars);
+
+                    animate();
+                }
+
+                function animate() {
+                    stars.rotation.y += 0.002;
+
+                    renderer.render(scene, camera);
+                    requestAnimationFrame(animate);
+                }
+
+                init();
+            </script>
+        </body>
+        </html>
+    " frameborder="0"></iframe>
+    <div id="content">
+        <center><h1><font color="white">Poems by<br>
+        <center><img src="/ml2.png" alt="what image shows" height="auto" width="900"></center></h1>
+        <a href="/about.html" class="btn"><img src="./monica_rounded_corners.png" alt="what image shows" height="auto" width="200"></a>
+        <center>
+            <a href="/about.html" class="btn"><img src="./about.png" alt="what image shows" height="auto" width="auto"></a>
+            <a href="#" id="random-poem-link" class="btn"><img src="./randompoem.png" alt="what image shows" height="auto" width="auto"></a>
+        </center>
+        <center><img src="/2me-fbar.gif" alt="what image shows" height="auto" width="auto"></center>
+        <br>
+        <br>
+        <center>
+            <a href="./appletonwestspencerstreet5408.html" class="link">Appleton, West Spencer Street, 5408</a> <br><br>
+            <a href="./this_is_not_the_sound_of_a_heart_breaking.html" class="link">This Is Not the Sound of a Heart Breaking</a> <br><br>
+            <a href="./conversationswithalexa.html" class="link">Conversations with Alexa</a> <br><br>
+            <a href="./sediment.html" class="link">Sediment</a> <br><br>
+            <a href="./forscottiemississippi97.html" class="link">For Scottie: Mississippi, '97</a> <br><br>
+            <a href="/1.html" class="link">#1</a> <br><br>
+            <a href="./2.html" class="link">#2</a> <br><br>
+            <a href="./3.html" class="link">#3</a> <br><br>
+            <a href="./memoryprick.html" class="link">Memory Prick</a> <br><br>
+            <a href="./footballseasonisover.html" class="link">Football season is over/I'll Be at Your Altar</a> <br><br>
+            <a href="./epigraph.html" class="link">Epigraph</a> <br><br>
+            <a href="./afutureyou.html" class="link">A Future You</a> <br><br>
+            <a href="./themostgoldenticket.html" class="link">The most Golden Ticket</a> <br><br>
+            <a href="./firstkiss.html" class="link">First Kiss</a> <br><br>
+            <a href="./liestotellyourself.html" class="link">(Lies to tell yourself when you are sad or happy or drunk or sober or woke or dreaming)</a> <br><br>
+            <a href="./aflutterofwingscaught.html" class="link">Omen</a> <br><br>
+            <a href="./howweomenareborn.html" class="link">How W(e)oman are born</a> <br><br>
+            <a href="./fwb.html" class="link">FWB</a> <br><br>
+            <a href="./onthed.html" class="link">On the D</a> <br><br>
+            <a href="./artemis.html" class="link">Artemis</a> <br><br>
+            <a href="./lettertoyourchromosomes.html" class="link">Letter to Your Chromosomes</a> <br><br>
+            <a href="./winonaforever.html" class="link">Winona Forever</a> <br><br>
+            <a href="./Breadcrumb424.html" class="link">Breadcrumb #424</a> <br><br>
+            <a href="./whatwelearnedaslittlegirls.html" class="link">What We Learned as Little Girls</a> <br><br>
+            <a href="./nightrun.html" class="link">Night Run (Story)</a> <br><br>
+            <a href="./odetoallthedrugsthatneversaved.html" class="link">Ode to All the Drugs That Never Saved</a> <br><br>
+            <a href="./pyrite.html" class="link">Pyrite</a> <br><br>
+            <a href="./howtocastaspell.html" class="link">How to Cast a Spell</a> <br><br>
+            <a href="./thelightofbastet.html" class="link">The light of Bastet</a> <br><br>
+            <a href="./mountsinaiat908am.html" class="link">Mount Sinai at 9:08 AM</a> <br><br>
+            <a href="./godgivesyouthispartythatneverends.html" class="link">God Gives You This Party That Never Ends</a> <br><br>
+            <br>
+            <br><br><br><br><br><br> <font color="white">© 2024 Monica Lewis | website design by Ben Snyder</font>
+            <div align='center'><img src='https://www.free-website-hit-counter.com/c.php?d=9&id=171049&s=27' border='0' alt='Website Hit Counter'></a>
+        </center>
+    </div>
+
+    <script>
+        const links = [
+            "./this_is_not_the_sound_of_a_heart_breaking.html",
+            "./conversationswithalexa.html",
+            "./sediment.html",
+            "./forscottiemississippi97.html",
+            "/1.html",
+            "./2.html",
+            "./3.html",
+            "./memoryprick.html",
+            "./footballseasonisover.html",
+            "./epigraph.html",
+            "./afutureyou.html",
+            "./themostgoldenticket.html",
+            "./firstkiss.html",
+            "./liestotellyourself.html",
+            "./aflutterofwingscaught.html",
+            "./howweomenareborn.html",
+            "./fwb.html",
+            "./onthed.html",
+            "./artemis.html",
+            "./lettertoyourchromosomes.html",
+            "./winonaforever.html",
+            "./Breadcrumb424.html",
+            "./whatwelearnedaslittlegirls.html",
+            "./nightrun.html",
+            "./odetoallthedrugsthatneversaved.html",
+            "./pyrite.html",
+            "./howtocastaspell.html",
+            "./thelightofbastet.html",
+            "./mountsinaiat908am.html",
+            "./godgivesyouthispartythatneverends.html"
+        ];
+
+        document.getElementById('random-poem-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            const randomIndex = Math.floor(Math.random() * links.length);
+            window.location.href = links[randomIndex];
+        });
+
+        document.querySelectorAll('.link').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                this.classList.add('explode');
+                setTimeout(() => {
+                    window.location.href = this.href;
+                }, 500);
+            });
+        });
+
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const img = this.querySelector('img');
+                img.classList.add('explode');
+                setTimeout(() => {
+                    window.location.href = this.href;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

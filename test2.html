@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starfield Background with Overlay</title>
+    <style>
+        body { margin: 0; position: relative; overflow: hidden; }
+        canvas { display: block; }
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; /* Prevent mouse events on overlay */
+            z-index: 1; /* Ensure it's above the canvas */
+            color: white; /* Text color */
+            font-size: 24px; /* Font size */
+            text-align: center; /* Center text */
+            font-family: Arial, sans-serif; /* Font family */
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/fonts/helvetiker_regular.typeface.json"></script>
+</head>
+<body>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 1); // Set background color to black
+        document.body.appendChild(renderer.domElement);
+
+        const stars = [];
+        const starCount = 1000;
+
+        for (let i = 0; i < starCount; i++) {
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(3);
+            positions[0] = (Math.random() - 0.5) * 2000; // x
+            positions[1] = (Math.random() - 0.5) * 2000; // y
+            positions[2] = (Math.random() - 0.5) * 2000; // z
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const material = new THREE.PointsMaterial({ color: 0xff0000, size: 2 });
+            const star = new THREE.Points(geometry, material);
+            stars.push(star);
+            scene.add(star);
+        }
+
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            stars.forEach(star => {
+                star.rotation.x += 0.001;
+                star.rotation.y += 0.001;
+            });
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+
+<!-- Overlay Text -->
+<div class="overlay" style="color: red; font-family: 'monospace', sans-serif;">
+    <div>Down for maintenance,</div>
+    <div>check back soon!</div>
+</div>
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monica Lewis — Poems</title>
+  <link rel="stylesheet" href="./style-main.css">
+</head>
+<body>
+
+  <header class="i-header">
+    <h1 class="i-name">
+      <span>Monica</span>
+      <span>Lewis</span>
+    </h1>
+    <hr class="i-rule">
+    <div class="i-meta">
+      <a href="./about.html">
+        <img src="./monica2.jpg" alt="Monica Lewis" class="i-photo">
+      </a>
+      <div class="i-links">
+        <a href="./about.html">About</a>
+        <button id="random-btn">Random Poem</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="i-list">
+    <a href="./appletonwestspencerstreet5408.html" class="i-poem">Appleton, West Spencer Street, 5408</a>
+    <a href="./this_is_not_the_sound_of_a_heart_breaking.html" class="i-poem">This Is Not the Sound of a Heart Breaking</a>
+    <a href="./conversationswithalexa.html" class="i-poem">Conversations with Alexa</a>
+    <a href="./sediment.html" class="i-poem">Sediment</a>
+    <a href="./forscottiemississippi97.html" class="i-poem">For Scottie: Mississippi, '97</a>
+    <a href="./1.html" class="i-poem">#1</a>
+    <a href="./2.html" class="i-poem">#2</a>
+    <a href="./3.html" class="i-poem">#3</a>
+    <a href="./memoryprick.html" class="i-poem">Memory Prick</a>
+    <a href="./footballseasonisover.html" class="i-poem">Football Season Is Over / I'll Be at Your Altar</a>
+    <a href="./epigraph.html" class="i-poem">Epigraph</a>
+    <a href="./afutureyou.html" class="i-poem">A Future You</a>
+    <a href="./themostgoldenticket.html" class="i-poem">The Most Golden Ticket</a>
+    <a href="./firstkiss.html" class="i-poem">First Kiss</a>
+    <a href="./liestotellyourself.html" class="i-poem">(Lies to Tell Yourself When You Are Sad or Happy or Drunk or Sober or Woke or Dreaming)</a>
+    <a href="./aflutterofwingscaught.html" class="i-poem">Omen</a>
+    <a href="./howweomenareborn.html" class="i-poem">How W(e)omen Are Born</a>
+    <a href="./fwb.html" class="i-poem">FWB</a>
+    <a href="./onthed.html" class="i-poem">On the D</a>
+    <a href="./artemis.html" class="i-poem">Artemis</a>
+    <a href="./lettertoyourchromosomes.html" class="i-poem">Letter to Your Chromosomes</a>
+    <a href="./winonaforever.html" class="i-poem">Winona Forever</a>
+    <a href="./Breadcrumb424.html" class="i-poem">Breadcrumb #424</a>
+    <a href="./whatwelearnedaslittlegirls.html" class="i-poem">What We Learned as Little Girls</a>
+    <a href="./nightrun.html" class="i-poem">Night Run <em>(Story)</em></a>
+    <a href="./odetoallthedrugsthatneversaved.html" class="i-poem">Ode to All the Drugs That Never Saved</a>
+    <a href="./pyrite.html" class="i-poem">Pyrite</a>
+    <a href="./howtocastaspell.html" class="i-poem">How to Cast a Spell</a>
+    <a href="./thelightofbastet.html" class="i-poem">The Light of Bastet</a>
+    <a href="./mountsinaiat908am.html" class="i-poem">Mount Sinai at 9:08 AM</a>
+  </nav>
+
+  <footer class="i-footer">
+    © 2024 Monica Lewis &nbsp;·&nbsp; website design by Ben Snyder
+  </footer>
+
+  <script>
+    const poems = [
+      './appletonwestspencerstreet5408.html',
+      './this_is_not_the_sound_of_a_heart_breaking.html',
+      './conversationswithalexa.html',
+      './sediment.html',
+      './forscottiemississippi97.html',
+      './1.html',
+      './2.html',
+      './3.html',
+      './memoryprick.html',
+      './footballseasonisover.html',
+      './epigraph.html',
+      './afutureyou.html',
+      './themostgoldenticket.html',
+      './firstkiss.html',
+      './liestotellyourself.html',
+      './aflutterofwingscaught.html',
+      './howweomenareborn.html',
+      './fwb.html',
+      './onthed.html',
+      './artemis.html',
+      './lettertoyourchromosomes.html',
+      './winonaforever.html',
+      './Breadcrumb424.html',
+      './whatwelearnedaslittlegirls.html',
+      './nightrun.html',
+      './odetoallthedrugsthatneversaved.html',
+      './pyrite.html',
+      './howtocastaspell.html',
+      './thelightofbastet.html',
+      './mountsinaiat908am.html'
+    ];
+
+    document.getElementById('random-btn').addEventListener('click', () => {
+      window.location.href = poems[Math.floor(Math.random() * poems.length)];
+    });
+  </script>
+
+</body>
+</html>
